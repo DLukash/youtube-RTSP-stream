@@ -7,7 +7,7 @@ import argparse
 # import required library like Gstreamer and GstreamerRtspServer
 gi.require_version('Gst', '1.0')
 gi.require_version('GstRtspServer', '1.0')
-from gi.repository import Gst, GstRtspServer, GObject
+from gi.repository import Gst, GstRtspServer, GLib
 
 # Sensor Factory class which inherits the GstRtspServer base class and add
 # properties to it.
@@ -42,7 +42,8 @@ class SensorFactory(GstRtspServer.RTSPMediaFactory):
                 # instead of changing the image shape as it affects the image quality.
                 frame = cv2.resize(frame, (opt.image_width, opt.image_height), \
                     interpolation = cv2.INTER_LINEAR)
-                data = frame.tostring()
+                # data = frame.tostring()
+                data = frame.tobytes()
                 buf = Gst.Buffer.new_allocate(None, len(data), None)
                 buf.fill(0, data)
                 buf.duration = self.duration
@@ -92,8 +93,9 @@ opt = parser.parse_args()
 #     pass
 
 # initializing the threads and running the stream on loop.
-GObject.threads_init()
+# GObject.threads_init()
+
 Gst.init(None)
 server = GstServer()
-loop = GObject.MainLoop()
+loop = GLib.MainLoop()
 loop.run()
