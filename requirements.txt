@@ -1,10 +1,6 @@
-certifi==2022.6.15
 numpy==1.23.1
-opencv-python==4.6.0
+opencv-python==4.6.0.66
 pafy==0.5.5
-pip==22.1.2
 pycairo==1.21.0
 PyGObject==3.42.2
-setuptools==61.2.0
-wheel==0.37.1
 youtube-dl==2020.12.2

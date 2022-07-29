@@ -51,9 +51,9 @@ class SensorFactory(GstRtspServer.RTSPMediaFactory):
                 buf.offset = timestamp
                 self.number_frames += 1
                 retval = src.emit('push-buffer', buf)
-                print('pushed buffer, frame {}, duration {} ns, durations {} s'.format(self.number_frames,
-                                                                                       self.duration,
-                                                                                       self.duration / Gst.SECOND))
+                # print('pushed buffer, frame {}, duration {} ns, durations {} s'.format(self.number_frames,
+                #                                                                        self.duration,
+                #                                                                        self.duration / Gst.SECOND))
                 if retval != Gst.FlowReturn.OK:
                     print(retval)
     # attach the launch string to the override method
@@ -78,10 +78,10 @@ class GstServer(GstRtspServer.RTSPServer):
 
 # getting the required information from the user 
 parser = argparse.ArgumentParser()
-parser.add_argument("--video_url", required=True, help="YouTube video url")
+parser.add_argument("--video_url", required=False, help="YouTube video url")
 parser.add_argument("--fps", required=True, help="fps of the camera", type = int)
-parser.add_argument("--image_width", required=True, help="video frame width", type = int)
-parser.add_argument("--image_height", required=True, help="video frame height", type = int)
+parser.add_argument("--image_width", required=False, help="video frame width", type = int)
+parser.add_argument("--image_height", required=False, help="video frame height", type = int)
 parser.add_argument("--port", default=8554, help="port to stream video", type = int)
 parser.add_argument("--stream_uri", default = "/video_stream", help="rtsp video stream uri")
 opt = parser.parse_args()

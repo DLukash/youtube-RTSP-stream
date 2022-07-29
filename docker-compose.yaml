@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  rtsp-streamer:
+    build: '.'
+    restart: always
+    container_name: rtsp-streamer
+    ports:
+      - 8554:8554
+    env_file:
+      - .env-example
