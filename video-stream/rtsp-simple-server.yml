@@ -165,9 +165,11 @@ hlsTrustedProxies: []
 # another entry.
 paths:
   stream:
-    runOnDemand: bash -c 'ffmpeg -re -stream_loop -1 -i /video/${VIDEO_FILE} -c copy -f rtsp rtsp://localhost:8554/stream'
-    runOnDemandRestart: yes
+    runOnInit: bash -c 'ffmpeg -re -stream_loop -1 -i /video/${VIDEO_FILE} -c copy -f rtsp rtsp://localhost:8554/stream'
+    runOnInitRestart: yes
   all:
+    runOnReady: bash -c 'ffmpeg -re -stream_loop -1 -i /video/${VIDEO_FILE} -c copy -f rtsp rtsp://localhost:8554/stream'
+    runOnReadyRestart: yes
     # Source of the stream. This can be:
     # * publisher -> the stream is published by a RTSP or RTMP client
     # * rtsp://existing-url -> the stream is pulled from another RTSP server / camera
@@ -272,7 +274,8 @@ paths:
     # * RTSP_PORT: server port
     # * G1, G2, ...: regular expression groups, if path name is
     #   a regular expression.
-    runOnReady: ffmpeg -re -stream_loop -1 -i /video/${VIDEO_FILE} -c copy -f rtsp rtsp://localhost:8554/stream
+    runOnReady: 
+    # ffmpeg -re -stream_loop -1 -i /video/${VIDEO_FILE} -c copy -f rtsp rtsp://localhost:8554/stream
     # Restart the command if it exits suddenly.
     runOnReadyRestart: no
 
