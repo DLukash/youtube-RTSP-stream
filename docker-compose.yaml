@@ -15,9 +15,10 @@ services:
       context: ./video-stream
       dockerfile: Dockerfile
     restart: always
+    network_mode: host
     container_name: rtsp-streamer-video
-    ports:
-      - 8554:8554
+    # ports:
+    #   - 8554:8554
     env_file:
       - .env
     volumes:
