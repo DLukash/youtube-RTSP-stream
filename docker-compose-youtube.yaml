@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  rtsp-streamer-youtube:
+    build: '.'
+    restart: always
+    network_mode: host
+    container_name: rtsp-streamer-youtube
+    # ports:
+    #   - 8554:8554
+    env_file:
+      - .env
+
+  # rtsp-streamer-file:
+  #   build:
+  #     context: ./video-stream
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   network_mode: host
+  #   container_name: rtsp-streamer-video
+  #   # ports:
+  #   #   - 8554:8554
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./video/:/video/
+    
